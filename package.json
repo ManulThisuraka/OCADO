@@ -1,0 +1,25 @@
+{
+  "name": "ocado",
+  "version": "1.0.0",
+  "description": "Online Product Management System using MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "start-server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManulThisuraka/OCADO.git"
+  },
+  "author": "OCADO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManulThisuraka/OCADO/issues"
+  },
+  "homepage": "https://github.com/ManulThisuraka/OCADO#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12"
+  }
+}
