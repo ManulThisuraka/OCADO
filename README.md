@@ -4,7 +4,7 @@
 #npm install nodemon/
 
 #client/
-#npx create-react-app/
+#npx create-react-app .
 
 #To run client side got to client folder and give/
 #npm start/
