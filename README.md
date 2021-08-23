@@ -1,7 +1,7 @@
 #OCADO/
-    npm install express
-		npm install mongoose
-		npm install nodemon
+#npm install express
+#npm install mongoose
+#npm install nodemon
 
 #client/
-    npx create-react-app
+#npx create-react-app
