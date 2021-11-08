@@ -12,6 +12,7 @@ router.post('/arrivals/add',(req,res)=>{
     })
 })
 
+
 router.get("/arrivals/",(req,res)=>{
 
     arrivals.find().then((arrivalList)=>{
