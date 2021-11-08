@@ -1,8 +1,25 @@
-var express = require("express")();
+var express = require("express");
 const connectDB = require("./database/database");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+
+//Import routes
+const arrivalsRouter = require("./routes/arrivals");
+const departuresRouter = require("./routes/departures");
+
+//App middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+//route middleware
+app.use(arrivalsRouter);
+app.use(departuresRouter);
+
 
 connectDB();
 
-var listener = express.listen(5000, function () {
+var listener = app.listen(5000, function () {
   console.log("Listening on port " + listener.address().port); //Listening on ${port}
 });
