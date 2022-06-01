@@ -12,6 +12,7 @@ export default class AddArrival extends Component {
             manufacture: "",
             aDate: "",
             quantity: "",
+            document:null,
             ecartId: "",
             eproductCode: "",
             emanufacture: "",
@@ -67,17 +68,21 @@ export default class AddArrival extends Component {
         e.preventDefault();
         const isValid = this.validate();
         if (isValid) {
-            const { cartId, productCode, manufacture, aDate, quantity } = this.state;
-            const data = {
-                cartId: cartId,
-                productCode: productCode,
-                manufacture: manufacture,
-                aDate: aDate,
-                quantity: quantity
-            }
-            console.log(data);
-
-            axios.post("http://localhost:5000/arrivals/add", data).then((res) => {
+            const { cartId, productCode, manufacture, aDate, quantity, document } = this.state;
+            let data = new FormData();
+            data.append('file',document);
+            data.append('cartId',cartId);
+            data.append('productCode',productCode);
+            data.append('manufacture',manufacture);
+            data.append('aDate',aDate);
+            data.append('quantity',quantity);
+            
+            axios({
+                method: "post",
+                url: "http://localhost:5000/arrivals/add",
+                data: data,
+                headers: data.getHeaders(),
+              }).then((res) => {
                 if (res.data.success) {
                     alert("Data added Successfully");
                     this.empty();
@@ -109,6 +114,10 @@ export default class AddArrival extends Component {
             eaDate: "",
             equantity: ""
         })
+    }
+
+    selectFile = (event) => {
+        this.state.document = event.target.files[0];
     }
 
     render() {
@@ -167,7 +176,12 @@ export default class AddArrival extends Component {
                             onChange={this.handleInputChange} />
                         <small className="text-danger">{this.state.equantity}</small>
                     </div>
+
+                    <br/>
+                    <input type="file" onChange={this.selectFile} />
+                    
                 </form>
+
                 <button type="submit" className="btn btn-primary" onClick={this.onSubmit} style={{ marginTop: '10px' }}>Submit</button>&nbsp;
                 <button className="btn btn-success" onClick={this.onDemo} style={{ marginTop: '10px' }}>Demo</button>
             </div>

@@ -1,16 +1,13 @@
 const router = require("express").Router();
 let arrivals = require("../models/arrivals");
+let controller = require('../Controllers/arrivals');
 
-router.post('/arrivals/add',(req,res)=>{
+const multer = require("multer");
 
-    const newArrival = new arrivals(req.body);
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
 
-    newArrival.save().then(()=>{
-        res.json({success:"Arrival added"});
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
+router.post('/arrivals/add',controller.createArrival);
 
 
 router.get("/arrivals/",(req,res)=>{
